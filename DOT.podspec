@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "DOT"
-  s.version      = "0.0.4"
+  s.version      = "0.0.6"
   s.summary      = "third party app tracking SDK"
   s.description  = <<-DESC
 	Upload Dot in CocoaPod third party app tracking SDK
@@ -14,8 +14,9 @@ Pod::Spec.new do |s|
   s.author       = { 'WoncheolHeo' => 'fornew21c@gmail.com' }
   s.ios.deployment_target = '8.0'
 
-  s.source       = { :git => "https://github.com/WoncheolHeo/DOT.git", :tag => "0.0.4" }
+  s.source       = { :git => "https://github.com/WoncheolHeo/DOT.git", :tag => "0.0.6" }
 
   s.source_files  = "DOT/**/*"
-  s.frameworks = "CouchbaseLite"
+  s.vendored_frameworks = "DOT/CouchbaseLite.framework"
+
 end
