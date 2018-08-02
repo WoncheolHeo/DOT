@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-#import "Purchase.h"
+
 #import "Conversion.h"
+#import "Purchase.h"
 #import "Page.h"
 #import "ClickEvent.h"
 #import "User.h"
