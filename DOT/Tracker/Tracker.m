@@ -123,7 +123,7 @@ static NSString* appKey;
                 NSInteger httpCode = [(NSHTTPURLResponse*) respons statusCode];
                 NSString *responseData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                 NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-                NSLog(@"httpCode : %ld", httpCode);
+                NSLog(@"httpCode : %ld", (long)httpCode);
                 NSLog(@"responseData: %@", responseData);
                 NSLog(@"response: %@", response);
                 NSString *receivedToken = [response objectForKey:@"token"];

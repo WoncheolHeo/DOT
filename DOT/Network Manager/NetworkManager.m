@@ -16,7 +16,7 @@
 
 - (void)requestAccessTokenWithServiceNumber:(NSInteger)serviceNumber package:(NSString *)package completion:(CompletionBlock)completion {
     NSString *urlStrTmp = @"/token/acsTokenRps.do?_wtno=";
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@%ld&_wPkg=%@",kDOTApiUrl,urlStrTmp,serviceNumber, package];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%ld&_wPkg=%@",kDOTApiUrl,urlStrTmp,(long)serviceNumber, package];
     
   
     
