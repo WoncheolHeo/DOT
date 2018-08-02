@@ -9,16 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-
 #import "Conversion.h"
-#import "Purchase.h"
 #import "Page.h"
 #import "ClickEvent.h"
 #import "User.h"
 #import "Referrer.h"
-
-#import <Foundation/Foundation.h>
-
+#import "Purchase.h"
 
 //! Project version number for DOT.
 FOUNDATION_EXPORT double DOTVersionNumber;
