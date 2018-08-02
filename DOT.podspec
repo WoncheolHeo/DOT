@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "DOT"
-  s.version      = "0.0.6"
+  s.version      = "0.0.7"
   s.summary      = "third party app tracking SDK"
   s.description  = <<-DESC
 	Upload Dot in CocoaPod third party app tracking SDK
@@ -14,9 +14,19 @@ Pod::Spec.new do |s|
   s.author       = { 'WoncheolHeo' => 'fornew21c@gmail.com' }
   s.ios.deployment_target = '8.0'
 
-  s.source       = { :git => "https://github.com/WoncheolHeo/DOT.git", :tag => "0.0.6" }
+  s.source       = { :git => "https://github.com/WoncheolHeo/DOT.git", :tag => "0.0.7" }
 
   s.source_files  = "DOT/**/*"
-  s.vendored_frameworks = "DOT/CouchbaseLite.framework"
 
+  s.subspec 'CouchbaseLite' do |ss|
+    ss.source_files = 'CouchbaseLite.framework/Headers/*.h'
+    ss.public_header_files = 'CouchbaseLite.framework/Headers/*.h'
+    ss.frameworks = 'CFNetwork', 'Security', 'SystemConfiguration', 'JavaScriptCore'
+    ss.libraries = 'z', 'c++', 'sqlite3'
+    ss.vendored_frameworks = 'CouchbaseLite.framework'
+    ss.xcconfig = {
+      'OTHER_LDFLAGS' => '-ObjC'
+    }
+    ss.preserve_paths = 'CouchbaseLite.framework'
+  end
 end

@@ -82,8 +82,8 @@
 		FE688011211296D200586AF5 /* NHNetworkClock.m in Sources */ = {isa = PBXBuildFile; fileRef = FE687FC8211296D200586AF5 /* NHNetworkClock.m */; };
 		FE688012211296D200586AF5 /* NHNetworkTime.h in Headers */ = {isa = PBXBuildFile; fileRef = FE687FC9211296D200586AF5 /* NHNetworkTime.h */; };
 		FE688013211296D200586AF5 /* NSDate+NetworkClock.h in Headers */ = {isa = PBXBuildFile; fileRef = FE687FCA211296D200586AF5 /* NSDate+NetworkClock.h */; };
-		FE68805F2112E15B00586AF5 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE68805E2112E15B00586AF5 /* CouchbaseLite.framework */; };
-		FE6880602112E18800586AF5 /* CouchbaseLite.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FE68805E2112E15B00586AF5 /* CouchbaseLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FE6880662112F73300586AF5 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE6880652112F73300586AF5 /* CouchbaseLite.framework */; };
+		FE6880672112F74C00586AF5 /* CouchbaseLite.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FE6880652112F73300586AF5 /* CouchbaseLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -93,7 +93,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FE6880602112E18800586AF5 /* CouchbaseLite.framework in CopyFiles */,
+				FE6880672112F74C00586AF5 /* CouchbaseLite.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,7 +177,7 @@
 		FE687FC8211296D200586AF5 /* NHNetworkClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHNetworkClock.m; sourceTree = "<group>"; };
 		FE687FC9211296D200586AF5 /* NHNetworkTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHNetworkTime.h; sourceTree = "<group>"; };
 		FE687FCA211296D200586AF5 /* NSDate+NetworkClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+NetworkClock.h"; sourceTree = "<group>"; };
-		FE68805E2112E15B00586AF5 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
+		FE6880652112F73300586AF5 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,7 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE68805F2112E15B00586AF5 /* CouchbaseLite.framework in Frameworks */,
+				FE6880662112F73300586AF5 /* CouchbaseLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +197,7 @@
 			children = (
 				FE687F592112969D00586AF5 /* DOT */,
 				FE687F582112969D00586AF5 /* Products */,
+				FE6880652112F73300586AF5 /* CouchbaseLite.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -211,7 +212,6 @@
 		FE687F592112969D00586AF5 /* DOT */ = {
 			isa = PBXGroup;
 			children = (
-				FE68805E2112E15B00586AF5 /* CouchbaseLite.framework */,
 				FE687FA0211296D100586AF5 /* Click */,
 				FE687FA6211296D100586AF5 /* Developer Interface */,
 				FE687F85211296D100586AF5 /* Goal */,
