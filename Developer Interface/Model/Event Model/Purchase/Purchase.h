@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Product.h"
 #import "CustomValue.h"
-#import "LocalDB.h"
 
 @interface Purchase : NSObject
 
@@ -21,11 +20,6 @@
 @property (nonatomic) NSString *keyword;
 
 @property (nonatomic) NSMutableArray <NSMutableDictionary *> *productDicList;
-
-//Local DB
-@property (nonatomic) CBLDatabase *database;
-@property (nonatomic) CBLMutableDocument *behaviorDoc;
-@property (nonatomic) CBLMutableDocument *enviromentDoc;
 
 - (void)setPurchase;
 - (instancetype)init;
