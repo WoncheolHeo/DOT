@@ -10,13 +10,13 @@ Pod::Spec.new do |s|
                    DESC
   s.homepage     = "https://github.com/WoncheolHeo/DOT"
 
-  s.license      = "MIT"
+  s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = "WiseTracker"
   s.platform     = :ios, "9.0"
 
   s.source       = { :git => "https://github.com/WoncheolHeo/DOT.git", :tag => "0.0.1" }
 
-  s.source_files  = "DOT"
+  s.source_files  = "Classes/*.{h,m}"
   s.swift_version = "4.2" 
 
 
