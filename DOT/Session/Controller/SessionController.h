@@ -19,7 +19,7 @@
 @property (nonatomic) CBLDatabase *database;
 @property (nonatomic) CBLMutableDocument *behaviorDoc;
 @property (nonatomic) CBLMutableDocument *enviromentDoc;
-//+ (instancetype)sharedInstance;
+
 - (instancetype)init;
 - (void)updateUdVt;
 - (void)updateLtvt;
@@ -36,17 +36,17 @@
 - (void)checkToResetUdRvnc;
 - (void)updateLtRvnc;
 
-- (void)updateCsRvnVs;
-- (void)updateLtrvn;
+- (void)updateCsRvnVsWithRevenueJson:(RevenueJson *)revenueJson;
+- (void)updateLtrvnWithRevenuJson:(RevenueJson *)revenuJson;
 
 - (void)updateLtrvni;
 
-- (void)updateLastOrderNo;
+- (void)updateLastOrderNoWithOrderNo:(NSString *)orderNo;
 - (void)updateFirstOrd;
 - (void)resetLtRvnVt;
 - (void)updateLtRvnVt;
 
-- (void)updatePiTrace;
+- (void)updatePiTraceWithPi:(NSString *)pi;
 
 - (void)saveRecentSessionTimeSec;
 - (void)saveEnviromentData;

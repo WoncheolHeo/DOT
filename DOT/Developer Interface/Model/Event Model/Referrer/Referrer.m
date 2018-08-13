@@ -45,9 +45,4 @@
     sessionJson.installReferrer = referrer;
 }
 
-- (void)setReferrer {
-    SessionJson *sessionJson = [SessionJson sharedInstance];
-    
-    sessionJson.pushNo = self.pushId;
-}
 @end

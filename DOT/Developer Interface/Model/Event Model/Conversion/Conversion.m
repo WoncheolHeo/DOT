@@ -7,8 +7,6 @@
 //
 
 #import "Conversion.h"
-#import "GoalJson.h"
-#import "goalJson.h"
 
 @implementation Conversion
 
@@ -244,44 +242,5 @@
     else if([constant isEqualToString:@"g76"]) {
         self.g76 = value;
     }
-}
-
-- (void)setConversion {
-    GoalJson *goalJson = [GoalJson sharedInstance];
-
-    goalJson.scart = self.keywordCategory;
-    goalJson.skwd = self.keyword;
-    
-    goalJson.mvt1 = self.customValueSet.customerValue1;
-    goalJson.mvt2 = self.customValueSet.customerValue2;
-    goalJson.mvt3 = self.customValueSet.customerValue3;
-    goalJson.mvt4 = self.customValueSet.customerValue4;
-    goalJson.mvt5 = self.customValueSet.customerValue5;
-    goalJson.mvt6 = self.customValueSet.customerValue6;
-    goalJson.mvt7 = self.customValueSet.customerValue7;
-    goalJson.mvt8 = self.customValueSet.customerValue8;
-    goalJson.mvt9 = self.customValueSet.customerValue9;
-    goalJson.mvt10 = self.customValueSet.customerValue10;
-    
-    goalJson.pg1 = self.product.firstCategory;
-    goalJson.pg2 = self.product.secondCategory;
-    goalJson.pg3 = self.product.thirdCategory;
-    goalJson.pg4 = self.product.detailCategory;
-    goalJson.pnc = self.product.productCode;
-    goalJson.pnAtr1 = self.product.attribute1;
-    goalJson.pnAtr2 = self.product.attribute2;
-    goalJson.pnAtr3 = self.product.attribute3;
-    goalJson.pnAtr4 = self.product.attribute4;
-    goalJson.pnAtr5 = self.product.attribute5;
-    goalJson.pnAtr6 = self.product.attribute6;
-    goalJson.pnAtr7 = self.product.attribute7;
-    goalJson.pnAtr8 = self.product.attribute8;
-    goalJson.pnAtr9 = self.product.attribute9;
-    goalJson.pnAtr10 = self.product.attribute10;
-
-    goalJson.g1 = self.g1;
-    goalJson.g2 = self.g2;
-    goalJson.g3 = self.g3;
-    goalJson.g78 = self.pushAgreement;
 }
 @end

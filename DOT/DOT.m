@@ -49,45 +49,31 @@ UIApplication* _application = nil;
 }
 
 + (void)setDeepLink:(NSString *)deepLink {
-    Referrer *referrer = [[Referrer alloc] init];
-    [referrer setDeepLink:deepLink];
-    [referrer parseDeepLink:deepLink];
+
+    [[Tracker sharedInstance] parseDeepLink:deepLink];
     
 }
 
 + (void)setReferrer:(Referrer *)refferer {
     
-    [refferer setReferrer];
-    [refferer parseReferrer:refferer.referrer];
+    [[Tracker sharedInstance] parseReferrer:refferer.referrer];
 }
 
 + (void)setPurchase:(Purchase *)purchase {
-    [purchase setPurchase];
-    
+    [[Tracker sharedInstance] setRevenueJsonWithPurchase:purchase];
     
     //동일주문번호 발생시 패스
-    //     NSString *lastOrderNo = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastOrderNumber"];
-    //    if([[RevenueJson sharedInstance].ordNo isEqualToString:lastOrderNo]) {
-    //        return;
-    //    }
+    if([[Tracker sharedInstance] checkPurchase]) {
+        return;
+    }
     
     [self updateValuesBeforeSending];
     [self sendTransaction];
-    
     [self updateValuesAfterSending];
 }
 
 + (void)updateValuesBeforeSending {
     [[Tracker sharedInstance] updateBeforePurchase];
-    //    SessionController *sessionController = [SessionController sharedInstance];
-    //
-    //    [sessionController updateUdRvnc];
-    //    [sessionController updateLtRvnc];
-    //    [sessionController updateLtrvn];
-    //    [sessionController updateCsRvnVs];
-    //    [sessionController updateLtrvni];
-    //    [sessionController updateFirstOrd];
-    
 }
 
 + (void)updateValuesAfterSending {
@@ -96,27 +82,42 @@ UIApplication* _application = nil;
 }
 
 + (void)setConversion:(Conversion *)conversion {
-    [conversion setConversion];
+    if(![[Tracker sharedInstance] getDOTInitFlag]) {
+        NSLog(@"DOT is not yet initailized");
+        return;
+    }
+    
+    [[Tracker sharedInstance] setGoalJosnWithConversion:conversion];
     [self sendTransaction];
 }
 
 + (void)setPage:(Page *)page {
-    
-    [page setPage];
+    [[Tracker sharedInstance] setPagesJsonWithPage:page];
 }
 
-+ (void)setClickEvent:(ClickEvent *)clickEvent {
-    [clickEvent setClickEvent];
++ (void)setClick:(Click *)click{
+    [[Tracker sharedInstance] setClickJsonWithClick:click];
     [self sendTransaction];
 }
 
 + (void)startPage {
-    
+    if(![[Tracker sharedInstance] getDOTInitFlag]) {
+        NSLog(@"DOT is not yet initailized");
+        return;
+    }
     [[Tracker sharedInstance] startPage];
 }
 
 + (void)endPage {
     [[Tracker sharedInstance] endPage];
+}
+
++ (void)enterForeground {
+    [[Tracker sharedInstance] enterForeground];
+}
+
++ (void)enterBackground {
+    [[Tracker sharedInstance] enterBackground];
 }
 @end
 

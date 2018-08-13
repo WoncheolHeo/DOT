@@ -15,13 +15,11 @@
 @property (nonatomic) NSString *keyword;
 @property (nonatomic) CustomValue *customValueSet;
 @property (nonatomic) NSString *contentPath;
-@property (nonatomic) NSInteger searchResult;
+@property (nonatomic) NSNumber *searchResult;
 @property (nonatomic) NSString *pi;
 @property (nonatomic) Product *product;
 @property (nonatomic) NSMutableDictionary *pagesJsonDict;
 
-
-- (void)setPage;
 - (void)setPageIdentity:(NSString *)pageIndetity;
 - (void)setSearchingResult:(NSInteger)searchingResult;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CouchbaseLite/CouchbaseLite.h>
+#include <CouchbaseLite/CouchbaseLite.h>
 @interface LocalDB : NSObject
 
 @property ( nonatomic) CBLDatabase *database;

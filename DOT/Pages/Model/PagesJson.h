@@ -55,6 +55,5 @@
 //piTrace 추적값
 @property (nonatomic) NSString *pID;
 @property NSMutableDictionary *finalPagesJson;
-+ (instancetype)sharedInstance;
-+ (void)clearInstance;
+
 @end

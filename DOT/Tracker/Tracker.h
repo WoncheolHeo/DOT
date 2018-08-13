@@ -10,12 +10,16 @@
 #import <WebKit/WebKit.h>
 #import "LocalDB.h"
 #import "User.h"
+#import "GoalJson.h"
+#import "Conversion.h"
+#import "RevenueJson.h"
+#import "Purchase.h"
+#import "ClickJson.h"
+#import "Click.h"
+#import "PagesJson.h"
+#import "Page.h"
 
 @interface Tracker : NSObject<UIWebViewDelegate,WKNavigationDelegate>
-
-@property (nonatomic) CBLDatabase *database;
-@property (nonatomic) CBLMutableDocument *behaviorDoc;
-@property (nonatomic) CBLMutableDocument *enviromentDoc;
 
 + (Tracker *)sharedInstance;
 + (void)applicationKey:(NSString *)_applicationKey;
@@ -30,4 +34,17 @@
 - (void)updateAfterPurchase;
 
 - (void)saveUserLoginInfo;
+
+- (void)setGoalJosnWithConversion:(Conversion *)conversion;
+- (void)setRevenueJsonWithPurchase:(Purchase *)purchase;
+- (void)setClickJsonWithClick:(Click *)click;
+- (void)setPagesJsonWithPage:(Page *)page;
+
+- (void)enterForeground;
+- (void)enterBackground;
+
+- (void)parseDeepLink:(NSString *)deepLink;
+- (void)parseReferrer:(NSString *)referrer;
+
+- (BOOL)getDOTInitFlag;
 @end

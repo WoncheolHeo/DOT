@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
+#import "Purchase.h"
 #import "Conversion.h"
 #import "Page.h"
-#import "ClickEvent.h"
+#import "Click.h"
 #import "User.h"
 #import "Referrer.h"
-#import "Purchase.h"
+
+#import <Foundation/Foundation.h>
+
 
 //! Project version number for DOT.
 FOUNDATION_EXPORT double DOTVersionNumber;
@@ -38,10 +41,11 @@ FOUNDATION_EXPORT const unsigned char DOTVersionString[];
 + (void)setPurchase:(Purchase *)purchase;
 + (void)setConversion:(Conversion *)conversion;
 + (void)setPage:(Page *)page;
-+ (void)setClickEvent:(ClickEvent *)clickEvent;
++ (void)setClick:(Click *)click;
 + (void)startPage;
 + (void)endPage;
-
++ (void)enterForeground;
++ (void)enterBackground;
 //서버전송 함수
 + (void)sendTransaction;
 @end

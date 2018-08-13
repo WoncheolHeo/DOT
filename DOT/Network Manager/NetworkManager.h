@@ -12,6 +12,8 @@ typedef void(^CompletionBlock)(BOOL isSuccess, NSData *data, id respons);
 
 @interface NetworkManager : NSObject
 
+- (void)requestFingerPrintWithWtno:(NSInteger)wtno completion:(CompletionBlock)completion;
 - (void)requestAccessTokenWithServiceNumber:(NSInteger)serviceNumber package:(NSString *)pagckage completion:(CompletionBlock)completion;
-- (void)sendDocumentWithType:(NSInteger)type fianlJsonListString:(NSString *)fianlJsonListString completion:(CompletionBlock)completion;
+- (void)sendDocument:(NSString *)fianlJsonListString completion:(CompletionBlock)completion;
+- (void)sendErrorLogWithError:(NSString *)errlog completion:(CompletionBlock)completion;
 @end

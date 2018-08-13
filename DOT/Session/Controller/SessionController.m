@@ -279,11 +279,11 @@
     [SessionJson sharedInstance].ltRvnc = ltRvnc;
 }
 
-- (void)updateCsRvnVs {
+- (void)updateCsRvnVsWithRevenueJson:(RevenueJson *)revenueJson {
     NSError *error;
     CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"Behavior"];
     NSTimeInterval recentSessionTimeSec = [document doubleForKey:@"recentSessionTimeSec"];
-    NSTimeInterval interval = [RevenueJson sharedInstance].vtTz / 1000 - recentSessionTimeSec;
+    NSTimeInterval interval = revenueJson.vtTz / 1000 - recentSessionTimeSec;
     
     CBLMutableDocument *behaviorDoc = [[[LocalDB sharedInstance].database documentWithID:@"Behavior"] toMutable];
     [behaviorDoc setInteger:(NSInteger) interval forKey:@"spendingTimeToPurchase"];
@@ -319,7 +319,7 @@
     
 }
 
-- (void)updateLtrvn {
+- (void)updateLtrvnWithRevenuJson:(RevenueJson *)revenueJson {
     NSError *error;
     CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"Behavior"];
     NSInteger ltrvn = [document integerForKey:@"lifePurchaseAmount"];
@@ -329,7 +329,6 @@
     }
 
     //구매 발생시점마다 총구매금액만큼 증가
-    RevenueJson *revenueJson = [RevenueJson sharedInstance];
     for(NSInteger i = 0; i < revenueJson.productList.count; i++) {
         ltrvn = ltrvn + [[[revenueJson.productList objectAtIndex:i] objectForKey:@"amt"] integerValue];
     }
@@ -341,14 +340,14 @@
     [SessionJson sharedInstance].ltrvn = ltrvn;
 }
 
-- (void)updateLastOrderNo {
+- (void)updateLastOrderNoWithOrderNo:(NSString *)orderNo{
     NSError *error;
     
     CBLMutableDocument *behaviorDoc = [[[LocalDB sharedInstance].database documentWithID:@"Behavior"] toMutable];
-    [behaviorDoc setString:[RevenueJson sharedInstance].ordNo forKey:@"lastPurchaseNo"];
+    [behaviorDoc setString:orderNo forKey:@"lastPurchaseNo"];
     [[LocalDB sharedInstance].database saveDocument:behaviorDoc error:&error];
     
-    [SessionJson sharedInstance].lastOrderNo = [RevenueJson sharedInstance].ordNo;
+    [SessionJson sharedInstance].lastOrderNo = orderNo;
 }
 
 - (void)updateFirstOrd {
@@ -392,16 +391,16 @@
     [[LocalDB sharedInstance].database saveDocument:behaviorDoc error:&error];
 }
 
-- (void)updatePiTrace {
+- (void)updatePiTraceWithPi:(NSString *)pi {
     NSError *error;
     CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"Behavior"];
     NSString *piTrace = [document stringForKey:@"piTrace"];
     
     if(!piTrace || [piTrace isEqualToString:@""] || piTrace == nil) {
-        piTrace = [PagesJson sharedInstance].pID;
+        piTrace = pi;
     }
     else {
-        piTrace = [piTrace stringByAppendingString:[NSString stringWithFormat:@"|%@", [PagesJson sharedInstance].pID]];
+        piTrace = [piTrace stringByAppendingString:[NSString stringWithFormat:@"|%@", pi]];
     }
     
     CBLMutableDocument *behaviorDoc = [[[LocalDB sharedInstance].database documentWithID:@"Behavior"] toMutable];
@@ -409,18 +408,19 @@
     [[LocalDB sharedInstance].database saveDocument:behaviorDoc error:&error];
     
     [SessionJson sharedInstance].piTrace = piTrace;
-    [PagesJson clearInstance];
 }
 
 - (void)saveRecentSessionTimeSec {
     NSError *error;
+    NSDate *currentTime = [[NSDate alloc] init];
+    NSTimeInterval currentTimeSec = [currentTime timeIntervalSince1970];
     
     CBLMutableDocument *behaviorDoc = [[[LocalDB sharedInstance].database documentWithID:@"Behavior"] toMutable];
     if(!behaviorDoc) {
         behaviorDoc = [[CBLMutableDocument alloc] initWithID:@"Behavior"];
     }
     
-    [behaviorDoc setDouble:[SessionJson sharedInstance].vtTz/1000 forKey:@"recentSessionTimeSec"];
+    [behaviorDoc setDouble:currentTimeSec forKey:@"recentSessionTimeSec"];
    
 
     [[LocalDB sharedInstance].database saveDocument:behaviorDoc error:&error];
@@ -433,6 +433,7 @@
 - (void)saveAppInfo:(NSMutableArray *)appInfo {
     NSError *error;
     CBLMutableDocument *appInfoDoc = [[CBLMutableDocument alloc] initWithID:@"AppInfo"];
+    //CBLMutableDocument *appInfoDoc = [[[LocalDB sharedInstance].database documentWithID:@"AppInfo"] toMutable];
     
     [appInfoDoc setString:[appInfo objectAtIndex:0] forKey:@"domain"];
     [appInfoDoc setInteger:[[appInfo objectAtIndex:1] integerValue]forKey:@"serviceNumber"];
@@ -440,10 +441,8 @@
     [appInfoDoc setBoolean:[[appInfo objectAtIndex:3] boolValue] forKey:@"isDebug"];
     [appInfoDoc setBoolean:[[appInfo objectAtIndex:4] boolValue] forKey:@"isInstallRetention"];
     [appInfoDoc setBoolean:[[appInfo objectAtIndex:5] boolValue] forKey:@"isFingerPrint"];
-    [appInfoDoc setString:[appInfo objectAtIndex:6] forKey:@"accessToken"];
     
     [[LocalDB sharedInstance].database saveDocument:appInfoDoc error:&error];
-    
 }
 
 - (void)updateIsVisitNew {
@@ -451,7 +450,6 @@
     CBLMutableDocument *behaviorDoc = [[[LocalDB sharedInstance].database documentWithID:@"Behavior"] toMutable];
     [behaviorDoc setString:@"Y" forKey:@"visitNew"];
     [[LocalDB sharedInstance].database saveDocument:behaviorDoc error:&error];
-    
 }
 
 - (void)resetAboutNewVistInfo {
@@ -462,6 +460,13 @@
     [behaviorDoc setString:@"N" forKey:@"weeklyUnique"];
     [behaviorDoc setString:@"N" forKey:@"monthlyUnique"];
     [behaviorDoc setString:@"N" forKey:@"weeklyUnique2"];
+    
+    [SessionJson sharedInstance].isVisitNew = @"N";
+    [SessionJson sharedInstance].isDf = @"N";
+    [SessionJson sharedInstance].isWf = @"N";
+    [SessionJson sharedInstance].isMf = @"N";
+    [SessionJson sharedInstance].isWfUs = @"N";
+    
     [[LocalDB sharedInstance].database saveDocument:behaviorDoc error:&error];
 }
 
@@ -492,9 +497,13 @@
 }
 
 - (void)resetVtTz {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"Install"];
+    long timeOffset = [[document numberForKey:@"timeOffset"] longValue];
+    
     NSDate *now = [[NSDate alloc] init];
     NSTimeInterval currentTimeSec = [now timeIntervalSince1970];
-    long long vtTz = [[NSNumber numberWithLongLong:currentTimeSec * 1000] longLongValue];
+    //현재 device 세션발생시간에 timeOffset만큼 더하기
+    long long vtTz = [[NSNumber numberWithLongLong:currentTimeSec * 1000] longLongValue] + timeOffset;
     
     NSError *error;
     CBLMutableDocument *behaviorDoc = [[[LocalDB sharedInstance].database documentWithID:@"Behavior"] toMutable];

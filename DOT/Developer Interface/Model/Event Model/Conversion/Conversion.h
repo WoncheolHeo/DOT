@@ -94,6 +94,6 @@
 @property (nonatomic) double g75;
 @property (nonatomic) double g76;
 @property (nonatomic) BOOL g78;
-- (void)setConversion;
+
 - (void)setMicroConversion:(NSString *)constant value:(double)value;
 @end

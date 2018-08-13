@@ -26,6 +26,4 @@
 
 @property (nonatomic) NSMutableDictionary *finalClickJson;
 
-+ (instancetype)sharedInstance;
-+ (void)clearInstance;
 @end

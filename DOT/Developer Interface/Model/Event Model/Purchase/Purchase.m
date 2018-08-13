@@ -7,21 +7,10 @@
 //
 
 #import "Purchase.h"
-#import "RevenueJson.h"
-#import "DOTUtil.h"
 
 @implementation Purchase
 
-- (instancetype)init {
-    //self.database = [LocalDB sharedInstance].database;
-//    self.behaviorDoc = [[CBLMutableDocument alloc] initWithID:@"Behavior"];
- //   self.enviromentDoc = [[CBLMutableDocument alloc] initWithID:@"Enviroment"];
-    
-    return self;
-}
-
 - (void)setOrderProductList:(NSMutableArray<Product *> *)productList {
-
     self.productDicList = [[NSMutableArray alloc] init];
     for(NSInteger i = 0; i < productList.count; i++) {
          
@@ -79,71 +68,5 @@
     [productDic setValue:orderProduct.productOrderNo forKey:@"ordPno"];
     
     [self.productDicList addObject:productDic];
-}
-
-- (void)setPurchase {
-    RevenueJson *revenueJson = [RevenueJson sharedInstance];
-   
-    //revenueData에 값세팅(필요여부 차후판단)
-    
-    revenueJson.vtTz = [[NSNumber numberWithLongLong:[DOTUtil currentTimeSecMulti1000]] longLongValue];
-    revenueJson.scart = self.keywordCategory;
-    revenueJson.skwd = self.keyword;
-   
-    revenueJson.mvt1 = self.customValueSet.customerValue1;
-    revenueJson.mvt2 = self.customValueSet.customerValue2;
-    revenueJson.mvt3 = self.customValueSet.customerValue3;
-    revenueJson.mvt4 = self.customValueSet.customerValue4;
-    revenueJson.mvt5 = self.customValueSet.customerValue5;
-    revenueJson.mvt6 = self.customValueSet.customerValue6;
-    revenueJson.mvt7 = self.customValueSet.customerValue7;
-    revenueJson.mvt8 = self.customValueSet.customerValue8;
-    revenueJson.mvt9 = self.customValueSet.customerValue9;
-    revenueJson.mvt10 = self.customValueSet.customerValue10;
-    
-    revenueJson.productList = self.productDicList;
-    revenueJson.ordNo = self.orderNo;
-    
-    //revenueJsonDict 값세팅
-//    if(revenueJson.vtTz) {
-//        [revenueJsonDict setValue:[[NSNumber alloc] initWithInteger:revenueJson.vtTz] forKey:@"vtTz"];
-//    }
-//
-//    [revenueJsonDict setValue:revenueJson.scart forKey:@"scart"];
-//    [revenueJsonDict setValue:revenueJson.skwd forKey:@"skwd"];
-//
-//    //CustomValue setting
-//    [revenueJsonDict setValue:revenueJson.mvt1 forKey:@"mvt1"];
-//    [revenueJsonDict setValue:revenueJson.mvt2 forKey:@"mvt2"];
-//    [revenueJsonDict setValue:revenueJson.mvt3 forKey:@"mvt3"];
-//    [revenueJsonDict setValue:revenueJson.mvt4 forKey:@"mvt4"];
-//    [revenueJsonDict setValue:revenueJson.mvt5 forKey:@"mvt5"];
-//    [revenueJsonDict setValue:revenueJson.mvt6 forKey:@"mvt6"];
-//    [revenueJsonDict setValue:revenueJson.mvt7 forKey:@"mvt7"];
-//    [revenueJsonDict setValue:revenueJson.mvt8 forKey:@"mvt8"];
-//    [revenueJsonDict setValue:revenueJson.mvt9 forKey:@"mvt9"];
-//    [revenueJsonDict setValue:revenueJson.mvt10 forKey:@"mvt10"];
-//
-//    //Product setting
-//    if(revenueJson.productList.count > 0) {
-//        [revenueJsonDict setValue:revenueJson.productList forKey:@"product"];
-//    }
-//
-//    [revenueJsonDict setValue:revenueJson.ordNo forKey:@"ordNo"];
-//
-//    //마지막 구매시간 저장
-//    NSError *error;
-//    double currentSec = [DOTUtil currentTimeSec];
-//
-//    CBLMutableDocument *behaviorDoc = [[[LocalDB sharedInstance].database documentWithID:@"Behavior"] toMutable];
-//    if(!behaviorDoc) {
-//        behaviorDoc = [[CBLMutableDocument alloc] initWithID:@"Behavior"];
-//    }
-//
-//    [behaviorDoc setDouble:currentSec forKey:@"lastPurchaseTimeSec"];
-//    [[LocalDB sharedInstance].database saveDocument:behaviorDoc error:&error];
-//
-//    revenueJson.finalRevenueJson = revenueJsonDict;
-    
 }
 @end

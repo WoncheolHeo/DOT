@@ -26,6 +26,5 @@
 @property (nonatomic) NSString* ordNo;
 
 @property (nonatomic) NSMutableDictionary *finalRevenueJson;
-+ (instancetype)sharedInstance;
-+ (void)clearInstance;
+
 @end

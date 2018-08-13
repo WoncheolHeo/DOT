@@ -20,7 +20,4 @@
 @property (nonatomic) NSString *keyword;
 
 @property (nonatomic) NSMutableArray <NSMutableDictionary *> *productDicList;
-
-- (void)setPurchase;
-- (instancetype)init;
 @end

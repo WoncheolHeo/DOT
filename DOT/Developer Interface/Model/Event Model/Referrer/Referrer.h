@@ -14,7 +14,5 @@
 @property (nonatomic) NSString *referrer;
 @property (nonatomic) NSString *pushId;
 
-- (void)parseDeepLink:(NSString *)deepLink;
-- (void)parseReferrer:(NSString *)referrer;
-- (void)setReferrer;
+
 @end

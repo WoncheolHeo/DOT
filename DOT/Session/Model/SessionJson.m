@@ -23,7 +23,17 @@ static SessionJson *sesseionJson = nil;
 
 -(instancetype) initUniqueInstance {
     Environment *enviroment = [[Environment alloc] init];
-    //NewSession발생 후 최초 sharedInstance할때 호출 or 앱실행시 호출됨.
+    // 앱실행시 호출 or NewSession발생 후 호출.
+    
+    self.installTime = [self getInstallTime];
+    //appInfo
+    self._wthst = [self getDomain];
+    self._wtno = [self getServiceNumber];
+    self._wtUdays = [self getExpireDate];
+    self._wtDebug = [self getIsDebug];
+    self._wtUseRetention = [self getIsInstallRetention];
+    self._wtUseFingerPrint = [self getIsFingerPrint];
+    self._accessToken = [self getAcessToken];
     
     //userInfo
     self.mbr = [self getMbr];
@@ -63,7 +73,6 @@ static SessionJson *sesseionJson = nil;
     self.networkTime = [[NSDate networkDate] timeIntervalSince1970];
     self.vtTz = [self getVtTz];
     //NTP시간 적용
-    [self saveSessionExpireTime];
     
     //식별자
     self.advtId = [self getAdid];
@@ -87,8 +96,31 @@ static SessionJson *sesseionJson = nil;
     self.ltrvn = [self getLtrvn];
     self.ltRvnVt = [self getLtRvnVt];
 
+    //Install Referrer
+    self.its = [self getIts];
+    self.itm = [self getItm];
+    self.itc = [self getItc];
+    self.itw = [self getItw];
+    self.itp = [self getItp];
+    self.itaffid = [self getItaffid];
+    self.itbffid = [self getItbffid];
+    self.itclkTime = [self getItclkTime];
+    self.installReferrer = [self getInstallReferrer];
+    
+    //deeplink Referrer;
+    self.wts = [self getWts];
+    self.wtm = [self getWtm];
+    self.wtc = [self getWtc];
+    self.wtw = [self getWtw];
+    self.wtp = [self getWtp];
+    self.wtaffid = [self getWtaffid];
+    self.wtbffid = [self getWtbffid];
+    self.wtclkTime = [self getWtclkTime];
+    self.wtref = [self getWtref];
+    
     return [super init];
 }
+
 
 - (NSString *)getAdid {
     ASIdentifierManager *manager = [ASIdentifierManager sharedManager];
@@ -230,10 +262,6 @@ static SessionJson *sesseionJson = nil;
     }
     
     return ltvt;
-}
-
-- (void)saveSessionExpireTime {
-
 }
 
 - (void)saveUUID {
@@ -427,5 +455,169 @@ static SessionJson *sesseionJson = nil;
     CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"Behavior"];
     isWfUs = [document stringForKey:@"weeklyUnique2"];
     return isWfUs;
+}
+
+- (NSString *)getDomain {
+    NSString *domain;
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"AppInfo"];
+    domain = [document stringForKey:@"domain"];
+    return domain;
+}
+
+- (NSInteger)getServiceNumber {
+    NSInteger serviceNumber;
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"AppInfo"];
+    serviceNumber = [document integerForKey:@"serviceNumber"];
+    return serviceNumber;
+}
+
+- (NSInteger)getExpireDate {
+    NSInteger expireDate;
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"AppInfo"];
+    expireDate = [document integerForKey:@"expireDate"];
+    return expireDate;
+}
+
+- (BOOL)getIsDebug {
+    BOOL isDebug;
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"AppInfo"];
+    isDebug = [document booleanForKey:@"isDebug"];
+    return isDebug;
+}
+
+- (BOOL)getIsInstallRetention {
+    BOOL isInstallRetention;
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"AppInfo"];
+    isInstallRetention = [document booleanForKey:@"isInstallRetention"];
+    return isInstallRetention;
+}
+
+- (BOOL)getIsFingerPrint{
+    BOOL isFingerPrint;
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"AppInfo"];
+    isFingerPrint = [document booleanForKey:@"isFingerPrint"];
+    return isFingerPrint;
+}
+
+- (NSString *)getAcessToken {
+    NSString *accessToken;
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"AppInfo"];
+    accessToken = [document stringForKey:@"accessToken"];
+    return accessToken;
+}
+
+- (long long)getInstallTime {
+    long long installTime;
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"Install"];
+    installTime = [[document numberForKey:@"installTime"] longLongValue];
+    return installTime;
+}
+
+- (NSString *)getIts {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"InstallReferrerInfo"];
+    NSString *its = [document stringForKey:@"its"];
+    return its;
+}
+
+- (NSString *)getItm {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"InstallReferrerInfo"];
+    NSString *itm = [document stringForKey:@"itm"];
+    return itm;
+}
+
+- (NSString *)getItc {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"InstallReferrerInfo"];
+    NSString *itc = [document stringForKey:@"itc"];
+    return itc;
+}
+
+- (NSString *)getItw {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"InstallReferrerInfo"];
+    NSString *itw = [document stringForKey:@"itw"];
+    return itw;
+}
+
+- (NSInteger)getItp {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"InstallReferrerInfo"];
+    NSInteger itp = [[document numberForKey:@"itp"] integerValue];
+    return itp;
+}
+
+- (NSString *)getItaffid {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"InstallReferrerInfo"];
+    NSString *itaffid = [document stringForKey:@"itaffid"];
+    return itaffid;
+}
+
+- (NSString *)getItbffid {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"InstallReferrerInfo"];
+    NSString *itbffid = [document stringForKey:@"itbffid"];
+    return itbffid;
+}
+
+- (long long)getItclkTime {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"InstallReferrerInfo"];
+    long long itclkTime = [[document numberForKey:@"itclkTime"] longLongValue];
+    return itclkTime;
+}
+
+- (NSString *)getInstallReferrer {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"InstallReferrerInfo"];
+    NSString *installReferrer = [document stringForKey:@"installReferrer"];
+    return installReferrer;
+}
+
+- (NSString *)getWts {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"DeeplinkReferrerInfo"];
+    NSString *wts = [document stringForKey:@"wts"];
+    return wts;
+}
+
+- (NSString *)getWtm {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"DeeplinkReferrerInfo"];
+    NSString *wtm = [document stringForKey:@"wtm"];
+    return wtm;
+}
+
+- (NSString *)getWtc {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"DeeplinkReferrerInfo"];
+    NSString *wtc = [document stringForKey:@"wtc"];
+    return wtc;
+}
+
+- (NSString *)getWtw {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"DeeplinkReferrerInfo"];
+    NSString *wtw = [document stringForKey:@"wtw"];
+    return wtw;
+}
+
+- (NSInteger)getWtp {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"DeeplinkReferrerInfo"];
+    NSInteger wtp = [[document numberForKey:@"wtp"] integerValue];
+    return wtp;
+}
+
+- (NSString *)getWtaffid {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"DeeplinkReferrerInfo"];
+    NSString *wtaffid = [document stringForKey:@"wtaffid"];
+    return wtaffid;
+}
+
+- (NSString *)getWtbffid {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"DeeplinkReferrerInfo"];
+    NSString *wtbffid = [document stringForKey:@"wtbffid"];
+    return wtbffid;
+}
+
+- (long long)getWtclkTime {
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"DeeplinkReferrerInfo"];
+    long long wtclkTime = [[document numberForKey:@"wtclkTime"] longLongValue];
+    return wtclkTime;
+}
+
+- (NSString *)getWtref{
+    CBLDocument *document = [[LocalDB sharedInstance].database documentWithID:@"DeeplinkReferrerInfo"];
+    NSString *wtref = [document stringForKey:@"wtref"];
+    return wtref;
 }
 @end

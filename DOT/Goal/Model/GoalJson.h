@@ -122,6 +122,4 @@
 
 @property (nonatomic) NSMutableDictionary *finalGoalJson;
 
-+ (instancetype)sharedInstance;
-+ (void)clearInstance;
 @end

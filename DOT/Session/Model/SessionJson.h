@@ -69,16 +69,18 @@
 //페이지 이벤트 후 변경값
 @property (nonatomic) NSString *piTrace;
 @property (nonatomic) NSString *isSFail;
+
 //유입경로(광고분석)
 //DeepLink
 @property (nonatomic) NSString *wts;
 @property (nonatomic) NSString *wtm;
 @property (nonatomic) NSString *wtc;
 @property (nonatomic) NSString *wtw;
+@property (nonatomic) NSInteger wtp;
 @property (nonatomic) NSString *wtaffid;
 @property (nonatomic) NSString *wtbffid;
 @property (nonatomic) NSString *wtref;
-@property (nonatomic) NSInteger wtclkTime;
+@property (nonatomic) long long wtclkTime;
 @property (nonatomic) NSString *dSource;
 @property (nonatomic) NSString *pushNo;
 
@@ -87,9 +89,10 @@
 @property (nonatomic) NSString *itm;
 @property (nonatomic) NSString *itc;
 @property (nonatomic) NSString *itw;
+@property (nonatomic) NSInteger itp;
 @property (nonatomic) NSString *itaffid;
 @property (nonatomic) NSString *itbffid;
-@property (nonatomic) NSInteger itclkTime;
+@property (nonatomic) long long itclkTime;
 @property (nonatomic) long long installTime;
 @property (nonatomic) NSString *installReferrer;
 
@@ -101,19 +104,13 @@
 @property (nonatomic) BOOL _wtUseRetention;
 @property (nonatomic) BOOL _wtUseFingerPrint;
 @property (nonatomic) NSString *_accessToken;
-//컨텐츠 분석
+
+//시간
 @property (nonatomic) long long vtTz;
 @property (nonatomic) NSTimeInterval networkTime;
 @property (nonatomic) NSTimeInterval deviceTime;
 @property (nonatomic) NSNumber *timeOffset;
 
-//Data Class
-@property (nonatomic) User *user;
-
-//Local DB
-@property (nonatomic) CBLDatabase *database;
-@property (nonatomic) CBLMutableDocument *behaviorDoc;
-@property (nonatomic) CBLMutableDocument *enviromentDoc;
 + (instancetype)sharedInstance;
 + (void)clearInstance;
 @end
