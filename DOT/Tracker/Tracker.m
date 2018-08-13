@@ -21,7 +21,7 @@
 #import "NHNetworkTime.h"
 #import "NetworkManager.h"
 #import "DOTReachability.h"
-#import <FBSDKCoreKit/FBSDKAppLinkUtility.h>
+//#import <FBSDKCoreKit/FBSDKAppLinkUtility.h>
 
 @interface Tracker ()
 @property (nonatomic) GoalJson *goalJson;
@@ -220,9 +220,9 @@ static NSString* appKey;
     //finger print 요청
     [self requestFingerPrint];
     //첫실행인 경우만 facebook referrer 체크
-    if(self.firstExcute) {
-        [self requestFacebookReferrer];
-    }
+//    if(self.firstExcute) {
+//        [self requestFacebookReferrer];
+//    }
     //5초 지연
     double delayInSeconds = 5.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -291,34 +291,34 @@ static NSString* appKey;
     //        NSString *result = (NSString*)[fbDict objectForKey:@"target_url"];
     //        [self parseReferrer:result];
     //    }
-        [FBSDKAppLinkUtility fetchDeferredAppLink:^(NSURL *url, NSError *error) {
-            if(error) {
-                NSLog(@"Received error while fetching deferred app link %@", error);
-            }
-            if(url) {
-                NSArray* params = [[url query] componentsSeparatedByString:@"&"];
-                if( [params count] > 0 ){
-                    for (NSString * value in params) {
-                        NSArray * bits = [value componentsSeparatedByString:@"="];
-                        NSString * key = [[bits objectAtIndex:0] stringByRemovingPercentEncoding];
-                        NSString * value = [[bits objectAtIndex:1] stringByRemovingPercentEncoding];
-                        if([key isEqualToString:@"al_applink_data"]){
-                            NSError *jsonError;
-                            NSData *objectData = [value dataUsingEncoding:NSUTF8StringEncoding];
-                            NSDictionary *fbDict = [NSJSONSerialization JSONObjectWithData:objectData
-                                                                                     options:NSJSONReadingMutableContainers
-                                                                                       error:&jsonError];
-                            if([fbDict objectForKey:@"target_url"] != nil){
-                                NSString *result = (NSString*)[fbDict objectForKey:@"target_url"];
-                                [self parseReferrer:result];
-                            }
-                        }else{
-    
-                        }
-                    }
-                }
-            }
-        }];
+//        [FBSDKAppLinkUtility fetchDeferredAppLink:^(NSURL *url, NSError *error) {
+//            if(error) {
+//                NSLog(@"Received error while fetching deferred app link %@", error);
+//            }
+//            if(url) {
+//                NSArray* params = [[url query] componentsSeparatedByString:@"&"];
+//                if( [params count] > 0 ){
+//                    for (NSString * value in params) {
+//                        NSArray * bits = [value componentsSeparatedByString:@"="];
+//                        NSString * key = [[bits objectAtIndex:0] stringByRemovingPercentEncoding];
+//                        NSString * value = [[bits objectAtIndex:1] stringByRemovingPercentEncoding];
+//                        if([key isEqualToString:@"al_applink_data"]){
+//                            NSError *jsonError;
+//                            NSData *objectData = [value dataUsingEncoding:NSUTF8StringEncoding];
+//                            NSDictionary *fbDict = [NSJSONSerialization JSONObjectWithData:objectData
+//                                                                                     options:NSJSONReadingMutableContainers
+//                                                                                       error:&jsonError];
+//                            if([fbDict objectForKey:@"target_url"] != nil){
+//                                NSString *result = (NSString*)[fbDict objectForKey:@"target_url"];
+//                                [self parseReferrer:result];
+//                            }
+//                        }else{
+//    
+//                        }
+//                    }
+//                }
+//            }
+//        }];
 }
 
 - (void)checkToResetDRInfo {
