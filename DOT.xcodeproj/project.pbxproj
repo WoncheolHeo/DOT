@@ -78,8 +78,7 @@
 		FE191CAB212144A800239472 /* LocalDB.m in Sources */ = {isa = PBXBuildFile; fileRef = FE191C65212144A800239472 /* LocalDB.m */; };
 		FE191CAC212144A800239472 /* LocalDB.h in Headers */ = {isa = PBXBuildFile; fileRef = FE191C66212144A800239472 /* LocalDB.h */; };
 		FE191CB0212144D100239472 /* DOT.m in Sources */ = {isa = PBXBuildFile; fileRef = FE191CAE212144D100239472 /* DOT.m */; };
-		FE191CB72121451F00239472 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE191CB62121451F00239472 /* FBSDKCoreKit.framework */; };
-		FE191CBB212145B900239472 /* FBSDKCoreKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FE191CB62121451F00239472 /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FE779E9721215F68004070FA /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE779E9621215F68004070FA /* CouchbaseLite.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -89,7 +88,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FE191CBB212145B900239472 /* FBSDKCoreKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,7 +168,7 @@
 		FE191C66212144A800239472 /* LocalDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalDB.h; sourceTree = "<group>"; };
 		FE191CAE212144D100239472 /* DOT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOT.m; sourceTree = "<group>"; };
 		FE191CB1212144DB00239472 /* DOT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DOT.h; sourceTree = "<group>"; };
-		FE191CB62121451F00239472 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		FE779E9621215F68004070FA /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,7 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE191CB72121451F00239472 /* FBSDKCoreKit.framework in Frameworks */,
+				FE779E9721215F68004070FA /* CouchbaseLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,7 +188,7 @@
 			children = (
 				FE191BFC2121444300239472 /* DOT */,
 				FE191BFB2121444300239472 /* Products */,
-				FE191CB62121451F00239472 /* FBSDKCoreKit.framework */,
+				FE779E9621215F68004070FA /* CouchbaseLite.framework */,
 			);
 			sourceTree = "<group>";
 		};
