@@ -1,9 +1,9 @@
 # DOT
 
-[![CI Status](https://img.shields.io/travis/WoncheolHeo/UploadTestSample.svg?style=flat)](https://travis-ci.org/WoncheolHeo/UploadTestSample)
-[![Version](https://img.shields.io/cocoapods/v/UploadTestSample.svg?style=flat)](https://cocoapods.org/pods/UploadTestSample)
-[![License](https://img.shields.io/cocoapods/l/UploadTestSample.svg?style=flat)](https://cocoapods.org/pods/UploadTestSample)
-[![Platform](https://img.shields.io/cocoapods/p/UploadTestSample.svg?style=flat)](https://cocoapods.org/pods/UploadTestSample)
+[![CI Status](https://img.shields.io/travis/WoncheolHeo/DOT.svg?style=flat)](https://travis-ci.org/WoncheolHeo/DOT)
+[![Version](https://img.shields.io/cocoapods/v/DOT.svg?style=flat)](https://cocoapods.org/pods/DOT)
+[![License](https://img.shields.io/cocoapods/l/DOT.svg?style=flat)](https://cocoapods.org/pods/DOT)
+[![Platform](https://img.shields.io/cocoapods/p/DOT.svg?style=flat)](https://cocoapods.org/pods/DOT)
 
 ## Example
 
@@ -13,7 +13,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-UploadTestSample is available through [CocoaPods](https://cocoapods.org). To install
+DOT is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
