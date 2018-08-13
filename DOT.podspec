@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "DOT"
-  s.version      = "0.0.10"
+  s.version      = "0.0.11"
   s.summary      = "third party app tracking SDK"
   s.description  = <<-DESC
 	Upload Dot in CocoaPod third party app tracking SDK
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
 
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { 'WoncheolHeo' => 'fornew21c@gmail.com' }
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source       = { :git => "https://github.com/WoncheolHeo/DOT.git", :tag => s.version.to_s }
 

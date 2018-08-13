@@ -78,11 +78,7 @@
 		FE191CAB212144A800239472 /* LocalDB.m in Sources */ = {isa = PBXBuildFile; fileRef = FE191C65212144A800239472 /* LocalDB.m */; };
 		FE191CAC212144A800239472 /* LocalDB.h in Headers */ = {isa = PBXBuildFile; fileRef = FE191C66212144A800239472 /* LocalDB.h */; };
 		FE191CB0212144D100239472 /* DOT.m in Sources */ = {isa = PBXBuildFile; fileRef = FE191CAE212144D100239472 /* DOT.m */; };
-		FE191CB3212144F400239472 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE191CB2212144F400239472 /* CouchbaseLite.framework */; };
-		FE191CB52121451000239472 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE191CB42121451000239472 /* Bolts.framework */; };
 		FE191CB72121451F00239472 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE191CB62121451F00239472 /* FBSDKCoreKit.framework */; };
-		FE191CB9212145B100239472 /* CouchbaseLite.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FE191CB2212144F400239472 /* CouchbaseLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FE191CBA212145B500239472 /* Bolts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FE191CB42121451000239472 /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FE191CBB212145B900239472 /* FBSDKCoreKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FE191CB62121451F00239472 /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -94,8 +90,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				FE191CBB212145B900239472 /* FBSDKCoreKit.framework in CopyFiles */,
-				FE191CBA212145B500239472 /* Bolts.framework in CopyFiles */,
-				FE191CB9212145B100239472 /* CouchbaseLite.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,8 +170,6 @@
 		FE191C66212144A800239472 /* LocalDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalDB.h; sourceTree = "<group>"; };
 		FE191CAE212144D100239472 /* DOT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOT.m; sourceTree = "<group>"; };
 		FE191CB1212144DB00239472 /* DOT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DOT.h; sourceTree = "<group>"; };
-		FE191CB2212144F400239472 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
-		FE191CB42121451000239472 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		FE191CB62121451F00239472 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,9 +178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE191CB3212144F400239472 /* CouchbaseLite.framework in Frameworks */,
 				FE191CB72121451F00239472 /* FBSDKCoreKit.framework in Frameworks */,
-				FE191CB52121451000239472 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,8 +191,6 @@
 				FE191BFC2121444300239472 /* DOT */,
 				FE191BFB2121444300239472 /* Products */,
 				FE191CB62121451F00239472 /* FBSDKCoreKit.framework */,
-				FE191CB2212144F400239472 /* CouchbaseLite.framework */,
-				FE191CB42121451000239472 /* Bolts.framework */,
 			);
 			sourceTree = "<group>";
 		};
