@@ -54,7 +54,7 @@
     NSInteger height = bounds.size.height;
     float scale = [[UIScreen mainScreen] scale];
     
-    return [NSString stringWithFormat: @"%d*%d/%.1f",width,height,scale];
+    return [NSString stringWithFormat: @"%ld*%ld/%.1f",(long) width,(long) height,scale];
 }
 
 - (NSString *)getPhone {

@@ -432,8 +432,8 @@
 
 - (void)saveAppInfo:(NSMutableArray *)appInfo {
     NSError *error;
-    CBLMutableDocument *appInfoDoc = [[CBLMutableDocument alloc] initWithID:@"AppInfo"];
-    //CBLMutableDocument *appInfoDoc = [[[LocalDB sharedInstance].database documentWithID:@"AppInfo"] toMutable];
+    //CBLMutableDocument *appInfoDoc = [[CBLMutableDocument alloc] initWithID:@"AppInfo"];
+    CBLMutableDocument *appInfoDoc = [[[LocalDB sharedInstance].database documentWithID:@"AppInfo"] toMutable];
     
     [appInfoDoc setString:[appInfo objectAtIndex:0] forKey:@"domain"];
     [appInfoDoc setInteger:[[appInfo objectAtIndex:1] integerValue]forKey:@"serviceNumber"];

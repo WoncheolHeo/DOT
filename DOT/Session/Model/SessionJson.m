@@ -8,7 +8,6 @@
 
 #import "SessionJson.h"
 #import "Environment.h"
-#import "VisitAction.h"
 #import "DOTUtil.h"
 #import <AdSupport/ASIdentifierManager.h>
 #import "NHNetworkTime.h"

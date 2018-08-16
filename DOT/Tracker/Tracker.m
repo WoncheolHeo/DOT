@@ -220,9 +220,9 @@ static NSString* appKey;
     //finger print 요청
     [self requestFingerPrint];
     //첫실행인 경우만 facebook referrer 체크
-//    if(self.firstExcute) {
-//        [self requestFacebookReferrer];
-//    }
+    //    if(self.firstExcute) {
+    //        [self requestFacebookReferrer];
+    //    }
     //5초 지연
     double delayInSeconds = 5.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -291,34 +291,34 @@ static NSString* appKey;
     //        NSString *result = (NSString*)[fbDict objectForKey:@"target_url"];
     //        [self parseReferrer:result];
     //    }
-//        [FBSDKAppLinkUtility fetchDeferredAppLink:^(NSURL *url, NSError *error) {
-//            if(error) {
-//                NSLog(@"Received error while fetching deferred app link %@", error);
-//            }
-//            if(url) {
-//                NSArray* params = [[url query] componentsSeparatedByString:@"&"];
-//                if( [params count] > 0 ){
-//                    for (NSString * value in params) {
-//                        NSArray * bits = [value componentsSeparatedByString:@"="];
-//                        NSString * key = [[bits objectAtIndex:0] stringByRemovingPercentEncoding];
-//                        NSString * value = [[bits objectAtIndex:1] stringByRemovingPercentEncoding];
-//                        if([key isEqualToString:@"al_applink_data"]){
-//                            NSError *jsonError;
-//                            NSData *objectData = [value dataUsingEncoding:NSUTF8StringEncoding];
-//                            NSDictionary *fbDict = [NSJSONSerialization JSONObjectWithData:objectData
-//                                                                                     options:NSJSONReadingMutableContainers
-//                                                                                       error:&jsonError];
-//                            if([fbDict objectForKey:@"target_url"] != nil){
-//                                NSString *result = (NSString*)[fbDict objectForKey:@"target_url"];
-//                                [self parseReferrer:result];
-//                            }
-//                        }else{
-//    
-//                        }
-//                    }
-//                }
-//            }
-//        }];
+    //    [FBSDKAppLinkUtility fetchDeferredAppLink:^(NSURL *url, NSError *error) {
+    //        if(error) {
+    //            NSLog(@"Received error while fetching deferred app link %@", error);
+    //        }
+    //        if(url) {
+    //            NSArray* params = [[url query] componentsSeparatedByString:@"&"];
+    //            if( [params count] > 0 ){
+    //                for (NSString * value in params) {
+    //                    NSArray * bits = [value componentsSeparatedByString:@"="];
+    //                    NSString * key = [[bits objectAtIndex:0] stringByRemovingPercentEncoding];
+    //                    NSString * value = [[bits objectAtIndex:1] stringByRemovingPercentEncoding];
+    //                    if([key isEqualToString:@"al_applink_data"]){
+    //                        NSError *jsonError;
+    //                        NSData *objectData = [value dataUsingEncoding:NSUTF8StringEncoding];
+    //                        NSDictionary *fbDict = [NSJSONSerialization JSONObjectWithData:objectData
+    //                                                                                 options:NSJSONReadingMutableContainers
+    //                                                                                   error:&jsonError];
+    //                        if([fbDict objectForKey:@"target_url"] != nil){
+    //                            NSString *result = (NSString*)[fbDict objectForKey:@"target_url"];
+    //                            [self parseReferrer:result];
+    //                        }
+    //                    }else{
+    //
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    }];
 }
 
 - (void)checkToResetDRInfo {
@@ -870,35 +870,54 @@ static NSString* appKey;
     }
     [self.networkManager sendDocument:fianlJsonListString completion:^(BOOL isSuccess, NSData *data, id respons) {
         if(isSuccess) {
-            NSLog(@"DOT LOG: SDK->SERVER JSON: %@", fianlJsonListString);
-            //            NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-            //            NSLog(@"response: %@", response);
             NSError *error;
-            CBLMutableDocument *jsonDoc = [[[LocalDB sharedInstance].database documentWithID:@"Json"] toMutable];
-            if(jsonDoc == nil) {
-                jsonDoc = [[CBLMutableDocument alloc] initWithID:@"Json"];
+            NSInteger httpCode = [(NSHTTPURLResponse*) respons statusCode];
+            NSString *responseData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            NSLog(@"httpCode : %ld", (long) httpCode);
+            NSLog(@"responseData: %@", responseData);
+            NSLog(@"response: %@", response);
+            
+            if([[response objectForKey:@"code"] isEqualToString:@"RES001"]) {
+                NSLog(@"DOT LOG: SDK->SERVER JSON: %@", fianlJsonListString);
+                CBLMutableDocument *jsonDoc = [[[LocalDB sharedInstance].database documentWithID:@"Json"] toMutable];
+                if(jsonDoc == nil) {
+                    jsonDoc = [[CBLMutableDocument alloc] initWithID:@"Json"];
+                }
+                [jsonDoc setString:@"" forKey:@"QueueJsonList"];
+                [[LocalDB sharedInstance].database saveDocument:jsonDoc error:&error];
+                
+                CBLMutableDocument *behaviorDoc = [[[LocalDB sharedInstance].database documentWithID:@"Behavior"] toMutable];
+                double lastEventTimeSec = [DOTUtil currentTimeSec];
+                [behaviorDoc setDouble:lastEventTimeSec + 1800 forKey:@"sessionExpireSec"];
+                [[LocalDB sharedInstance].database saveDocument:behaviorDoc error:&error];
+                
+                //clickJson, goalJosn 데이터 초기화
+                self.clickJson = [[ClickJson alloc] init];
+                self.goalJson = [[GoalJson alloc] init];
+                
+                //임시 - Json뿌려주는 화면용
+                NSString *sendedJsonList = [[NSUserDefaults standardUserDefaults] stringForKey:@"sendedJsonList"];
+                if(!sendedJsonList) {
+                    sendedJsonList = @"";
+                }
+                sendedJsonList = [sendedJsonList stringByAppendingString:fianlJsonListString];
+                [[NSUserDefaults standardUserDefaults] setValue:sendedJsonList forKey:@"sendedJsonList"];
             }
-            [jsonDoc setString:@"" forKey:@"QueueJsonList"];
-            [[LocalDB sharedInstance].database saveDocument:jsonDoc error:&error];
-            
-            CBLMutableDocument *behaviorDoc = [[[LocalDB sharedInstance].database documentWithID:@"Behavior"] toMutable];
-            double lastEventTimeSec = [DOTUtil currentTimeSec];
-            [behaviorDoc setDouble:lastEventTimeSec + 1800 forKey:@"sessionExpireSec"];
-            [[LocalDB sharedInstance].database saveDocument:behaviorDoc error:&error];
-            
-            //clickJson, goalJosn 데이터 초기화
-            self.clickJson = [[ClickJson alloc] init];
-            self.goalJson = [[GoalJson alloc] init];
-            
-            //임시 - Json뿌려주는 화면용
-            NSString *sendedJsonList = [[NSUserDefaults standardUserDefaults] stringForKey:@"sendedJsonList"];
-            if(!sendedJsonList) {
-                sendedJsonList = @"";
+            else {
+                [self.networkManager sendErrorLogWithError:[response objectForKey:@"msg"] completion:^(BOOL isSuccess, NSData *data, id respons) {
+                    if(isSuccess) {
+                        NSLog(@"DOT LOG: %@", [response objectForKey:@"msg"] );
+                    }
+                }];
             }
-            sendedJsonList = [sendedJsonList stringByAppendingString:fianlJsonListString];
-            [[NSUserDefaults standardUserDefaults] setValue:sendedJsonList forKey:@"sendedJsonList"];
         }
         else {
+            [self.networkManager sendErrorLogWithError:@"sendDocument network error" completion:^(BOOL isSuccess, NSData *data, id respons) {
+                if(isSuccess) {
+                    NSLog(@"DOT LOG: sendDocument network error");
+                }
+            }];
             NSError *error;
             CBLMutableDocument *jsonDoc = [[[LocalDB sharedInstance].database documentWithID:@"Json"] toMutable];
             if(jsonDoc == nil) {
@@ -1285,4 +1304,5 @@ static NSString* appKey;
     return self.DOTinitYN;
 }
 @end
+
 

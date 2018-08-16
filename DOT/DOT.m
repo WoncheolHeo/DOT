@@ -82,11 +82,6 @@ UIApplication* _application = nil;
 }
 
 + (void)setConversion:(Conversion *)conversion {
-    if(![[Tracker sharedInstance] getDOTInitFlag]) {
-        NSLog(@"DOT is not yet initailized");
-        return;
-    }
-    
     [[Tracker sharedInstance] setGoalJosnWithConversion:conversion];
     [self sendTransaction];
 }
@@ -101,10 +96,6 @@ UIApplication* _application = nil;
 }
 
 + (void)startPage {
-    if(![[Tracker sharedInstance] getDOTInitFlag]) {
-        NSLog(@"DOT is not yet initailized");
-        return;
-    }
     [[Tracker sharedInstance] startPage];
 }
 

@@ -31,12 +31,8 @@
 		FE191C7C212144A800239472 /* SessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE191C22212144A800239472 /* SessionController.m */; };
 		FE191C7D212144A800239472 /* SessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE191C24212144A800239472 /* SessionManager.m */; };
 		FE191C7E212144A800239472 /* SessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FE191C25212144A800239472 /* SessionManager.h */; };
-		FE191C7F212144A800239472 /* VisitAction.m in Sources */ = {isa = PBXBuildFile; fileRef = FE191C27212144A800239472 /* VisitAction.m */; };
 		FE191C80212144A800239472 /* SessionJson.m in Sources */ = {isa = PBXBuildFile; fileRef = FE191C28212144A800239472 /* SessionJson.m */; };
-		FE191C81212144A800239472 /* Visit.h in Headers */ = {isa = PBXBuildFile; fileRef = FE191C29212144A800239472 /* Visit.h */; };
 		FE191C82212144A800239472 /* Environment.h in Headers */ = {isa = PBXBuildFile; fileRef = FE191C2A212144A800239472 /* Environment.h */; };
-		FE191C83212144A800239472 /* VisitAction.h in Headers */ = {isa = PBXBuildFile; fileRef = FE191C2B212144A800239472 /* VisitAction.h */; };
-		FE191C84212144A800239472 /* Visit.m in Sources */ = {isa = PBXBuildFile; fileRef = FE191C2C212144A800239472 /* Visit.m */; };
 		FE191C85212144A800239472 /* SessionJson.h in Headers */ = {isa = PBXBuildFile; fileRef = FE191C2D212144A800239472 /* SessionJson.h */; };
 		FE191C86212144A800239472 /* Environment.m in Sources */ = {isa = PBXBuildFile; fileRef = FE191C2E212144A800239472 /* Environment.m */; };
 		FE191C87212144A800239472 /* NetworkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FE191C30212144A800239472 /* NetworkManager.h */; };
@@ -79,6 +75,7 @@
 		FE191CAC212144A800239472 /* LocalDB.h in Headers */ = {isa = PBXBuildFile; fileRef = FE191C66212144A800239472 /* LocalDB.h */; };
 		FE191CB0212144D100239472 /* DOT.m in Sources */ = {isa = PBXBuildFile; fileRef = FE191CAE212144D100239472 /* DOT.m */; };
 		FE779E9721215F68004070FA /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE779E9621215F68004070FA /* CouchbaseLite.framework */; };
+		FE779F0A21226E8F004070FA /* DOT.h in Headers */ = {isa = PBXBuildFile; fileRef = FE191CB1212144DB00239472 /* DOT.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -120,12 +117,8 @@
 		FE191C22212144A800239472 /* SessionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionController.m; sourceTree = "<group>"; };
 		FE191C24212144A800239472 /* SessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionManager.m; sourceTree = "<group>"; };
 		FE191C25212144A800239472 /* SessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionManager.h; sourceTree = "<group>"; };
-		FE191C27212144A800239472 /* VisitAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisitAction.m; sourceTree = "<group>"; };
 		FE191C28212144A800239472 /* SessionJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionJson.m; sourceTree = "<group>"; };
-		FE191C29212144A800239472 /* Visit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Visit.h; sourceTree = "<group>"; };
 		FE191C2A212144A800239472 /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
-		FE191C2B212144A800239472 /* VisitAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisitAction.h; sourceTree = "<group>"; };
-		FE191C2C212144A800239472 /* Visit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Visit.m; sourceTree = "<group>"; };
 		FE191C2D212144A800239472 /* SessionJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionJson.h; sourceTree = "<group>"; };
 		FE191C2E212144A800239472 /* Environment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Environment.m; sourceTree = "<group>"; };
 		FE191C30212144A800239472 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
@@ -317,14 +310,10 @@
 		FE191C26212144A800239472 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FE191C27212144A800239472 /* VisitAction.m */,
-				FE191C28212144A800239472 /* SessionJson.m */,
-				FE191C29212144A800239472 /* Visit.h */,
 				FE191C2A212144A800239472 /* Environment.h */,
-				FE191C2B212144A800239472 /* VisitAction.h */,
-				FE191C2C212144A800239472 /* Visit.m */,
-				FE191C2D212144A800239472 /* SessionJson.h */,
 				FE191C2E212144A800239472 /* Environment.m */,
+				FE191C2D212144A800239472 /* SessionJson.h */,
+				FE191C28212144A800239472 /* SessionJson.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -332,8 +321,8 @@
 		FE191C2F212144A800239472 /* Network Manager */ = {
 			isa = PBXGroup;
 			children = (
-				FE191C30212144A800239472 /* NetworkManager.h */,
 				FE191C31212144A800239472 /* DOTAPIConstant.h */,
+				FE191C30212144A800239472 /* NetworkManager.h */,
 				FE191C32212144A800239472 /* NetworkManager.m */,
 			);
 			path = "Network Manager";
@@ -524,10 +513,8 @@
 				FE191C98212144A800239472 /* CustomValue.h in Headers */,
 				FE191C8B212144A800239472 /* Tracker.h in Headers */,
 				FE191C78212144A800239472 /* NSDate+NetworkClock.h in Headers */,
-				FE191C81212144A800239472 /* Visit.h in Headers */,
 				FE191CAC212144A800239472 /* LocalDB.h in Headers */,
 				FE191C75212144A800239472 /* GCDAsyncUdpSocket.h in Headers */,
-				FE191C83212144A800239472 /* VisitAction.h in Headers */,
 				FE191C82212144A800239472 /* Environment.h in Headers */,
 				FE191CA8212144A800239472 /* ClickJson.h in Headers */,
 				FE191CA9212144A800239472 /* ClickData.h in Headers */,
@@ -543,6 +530,7 @@
 				FE191C90212144A800239472 /* DOTUtil.h in Headers */,
 				FE191C88212144A800239472 /* DOTAPIConstant.h in Headers */,
 				FE191CA0212144A800239472 /* User.h in Headers */,
+				FE779F0A21226E8F004070FA /* DOT.h in Headers */,
 				FE191C91212144A800239472 /* DOTConstant.h in Headers */,
 				FE191CA1212144A800239472 /* Conversion.h in Headers */,
 				FE191C6F212144A800239472 /* NHNTLog.h in Headers */,
@@ -628,7 +616,6 @@
 				FE191CAA212144A800239472 /* ClickJson.m in Sources */,
 				FE191CB0212144D100239472 /* DOT.m in Sources */,
 				FE191C99212144A800239472 /* Product.m in Sources */,
-				FE191C7F212144A800239472 /* VisitAction.m in Sources */,
 				FE191C71212144A800239472 /* GCDAsyncUdpSocket.m in Sources */,
 				FE191C94212144A800239472 /* NSData+AESCrypt.m in Sources */,
 				FE191C9A212144A800239472 /* CustomValue.m in Sources */,
@@ -649,7 +636,6 @@
 				FE191C73212144A800239472 /* NSDate+NetworkClock.m in Sources */,
 				FE191C72212144A800239472 /* NHNetAssociation.m in Sources */,
 				FE191CA7212144A800239472 /* ClickData.m in Sources */,
-				FE191C84212144A800239472 /* Visit.m in Sources */,
 				FE191CA2212144A800239472 /* Conversion.m in Sources */,
 				FE191C7C212144A800239472 /* SessionController.m in Sources */,
 				FE191C76212144A800239472 /* NHNetworkClock.m in Sources */,
@@ -791,6 +777,7 @@
 				);
 				INFOPLIST_FILE = DOT/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -819,6 +806,7 @@
 				);
 				INFOPLIST_FILE = DOT/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
