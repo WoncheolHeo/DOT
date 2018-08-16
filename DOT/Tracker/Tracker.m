@@ -901,7 +901,7 @@ static NSString* appKey;
                 if(!sendedJsonList) {
                     sendedJsonList = @"";
                 }
-                sendedJsonList = [sendedJsonList stringByAppendingString:fianlJsonListString];
+                sendedJsonList = [[sendedJsonList stringByAppendingString:fianlJsonListString] stringByAppendingString:@"\n\n\n"];
                 [[NSUserDefaults standardUserDefaults] setValue:sendedJsonList forKey:@"sendedJsonList"];
             }
             else {

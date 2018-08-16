@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "DOT"
-  s.version      = "0.0.11"
+  s.version      = "0.0.12"
   s.summary      = "third party app tracking SDK"
   s.description  = <<-DESC
 	Upload Dot in CocoaPod third party app tracking SDK
